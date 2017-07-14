@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;LongestSubstringWithoutRepeatingCharacters&apos; to &apos;LongestSubstring3&apos;&#x0A;- Original element: &apos;LongestSubstringWithoutRepeatingCharacters&apos;&#x0A;- Renamed element: &apos;LongestSubstringWithoutRepeatingCharacters&apos;&#x0A;- Update references to refactored element" description="Rename Java project &apos;LongestSubstringWithoutRepeatingCharacters&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=LongestSubstringWithoutRepeatingCharacters" name="LongestSubstring3" references="true" stamp="1480413982728" version="1.0"/>
+</session>

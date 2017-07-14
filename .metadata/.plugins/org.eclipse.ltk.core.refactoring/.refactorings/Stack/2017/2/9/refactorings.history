@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.user.stack&apos; to &apos;BinanyTree/src&apos;&#x0A;- Original project: &apos;Stack&apos;&#x0A;- Destination element: &apos;BinanyTree/src&apos;&#x0A;- Original element: &apos;Stack/src/com.user.stack&apos;" description="Copy package" destination="=BinanyTree/src" element1="/src&lt;com.user.stack" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1488118549204" version="1.0"/>
+</session>

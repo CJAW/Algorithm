@@ -1,0 +1,219 @@
+package com.user.AdjacencyList;
+
+import java.util.Scanner;
+
+/**
+ * 邻接表
+ *顶点使用一维数组存储顶点信息，下标为编号
+ *链表存储链接的关系
+ * @author user
+ *
+ */
+
+public class AdjacencyList {
+
+	int Max_Vaue = 10;
+
+	//创建邻接表无向图
+	public void createAdjacenyList(Graph graph){
+		
+		init(graph);
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("输入边数");
+		int edgesNum = scanner.nextInt(); //输入的边数
+		System.out.println("输入顶点数");
+		int vertexsNum = scanner.nextInt();//输入的顶点数
+		
+		//顶点编号
+		for(int i=0;i<vertexsNum;i++){
+			graph.vertexs[i].on = i;
+			graph.vertexsNum++;
+		}
+		//链接边
+		for(int i=0;i<edgesNum;i++){
+			System.out.println("输入两个顶点的编号");
+			int j = scanner.nextInt();
+			int k = scanner.nextInt();
+			if(j>=vertexsNum||k>=vertexsNum){
+				System.out.println("错误");
+				i = i-1;
+				continue;
+			}else if(graph.edges[j][k]==1){
+				//使用头插法,使用尾插法无法判断顶点表
+				EdgesNode edgesNode = new EdgesNode();//创建一个节点
+				edgesNode.vertexsNo = k;//指向下一个节点的编号
+				edgesNode.nextNode = graph.vertexs[j].fistNode; //使用头插法，链表的顺序相反，交换地址，j头节点不动
+				graph.vertexs[j].fistNode = edgesNode; //与该顶点相连的坐标，节点下移
+				
+				//无向图为双向对称
+				EdgesNode edgesNodes = new EdgesNode();//创建一个节点
+				edgesNodes.vertexsNo = j;//指向下一个节点的编号
+				edgesNodes.nextNode = graph.vertexs[k].fistNode;
+				graph.vertexs[k].fistNode = edgesNodes; //与该顶点相连的坐标
+			}		
+		}
+		scanner.close();
+	}
+	
+	//创建邻接表无向图有权值
+		public void createAdjacenyListHaveWeight(Graph graph){
+			
+			init(graph);
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("输入边数");
+			int edgesNum = scanner.nextInt(); //输入的边数
+			System.out.println("输入顶点数");
+			int vertexsNum = scanner.nextInt();//输入的顶点数
+			
+			//顶点编号
+			for(int i=0;i<vertexsNum;i++){
+				graph.vertexs[i].on = i;
+				graph.vertexsNum++;
+			}
+			//链接边
+			for(int i=0;i<edgesNum;i++){
+				System.out.println("输入两个顶点的编号");
+				int j = scanner.nextInt();
+				int k = scanner.nextInt();
+				int weight = scanner.nextInt();
+				if(j>=vertexsNum||k>=vertexsNum){
+					System.out.println("错误");
+					i = i-1;
+					continue;
+				}else {
+					//使用头插法,使用尾插法无法判断顶点表
+					EdgesNode edgesNode = new EdgesNode();//创建一个节点
+					edgesNode.vertexsNo = k;//指向下一个节点的编号
+					edgesNode.weight = weight;
+					edgesNode.nextNode = graph.vertexs[j].fistNode; //使用头插法，链表的顺序相反，指向前一个节点
+					graph.vertexs[j].fistNode = edgesNode; //与该顶点相连的坐标，节点下移
+					
+					//无向图为双向对称
+					EdgesNode edgesNodes = new EdgesNode();//创建一个节点
+					edgesNodes.vertexsNo = j;//指向下一个节点的编号
+					edgesNode.weight = weight;
+					edgesNodes.nextNode = graph.vertexs[k].fistNode;
+					graph.vertexs[k].fistNode = edgesNodes; 
+				}		
+			}
+			scanner.close();
+		}
+		
+		
+	//创建邻接表有向图
+			public void createAdjacenyListDirectedHaveWeight(Graph graph){
+				
+				init(graph);
+				Scanner scanner = new Scanner(System.in);
+				System.out.println("输入边数");
+				int edgesNum = scanner.nextInt(); //输入的边数
+				System.out.println("输入顶点数");
+				int vertexsNum = scanner.nextInt();//输入的顶点数
+				
+				//顶点编号
+				for(int i=0;i<vertexsNum;i++){
+					graph.vertexs[i].on = i;
+					graph.vertexsNum++;
+				}
+				//链接边
+				for(int i=0;i<edgesNum;i++){
+					System.out.println("输入两个顶点的编号");
+					int j = scanner.nextInt();
+					int k = scanner.nextInt();
+					if(j>=vertexsNum||k>=vertexsNum){
+						System.out.println("错误");
+						i = i-1;
+						continue;
+					}else {
+						//使用头插法,使用尾插法无法判断顶点表
+						EdgesNode edgesNode = new EdgesNode();//创建一个节点
+						edgesNode.vertexsNo = k;//指向下一个节点的编号
+						edgesNode.nextNode = graph.vertexs[j].fistNode; //使用头插法，链表的顺序相反，交换地址
+						graph.vertexs[j].fistNode = edgesNode; //与该顶点相连的坐标，节点下移
+					}		
+				}
+				scanner.close();
+			}
+	
+	//创建邻接表有向图有全值
+		public void createAdjacenyListDirected(Graph graph){
+			
+			init(graph);
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("输入边数");
+			int edgesNum = scanner.nextInt(); //输入的边数
+			System.out.println("输入顶点数");
+			int vertexsNum = scanner.nextInt();//输入的顶点数
+			
+			//顶点编号
+			for(int i=0;i<vertexsNum;i++){
+				graph.vertexs[i].on = i;
+				graph.vertexsNum++;
+			}
+			//链接边
+			for(int i=0;i<edgesNum;i++){
+				System.out.println("输入两个顶点的编号");
+				int j = scanner.nextInt();
+				int k = scanner.nextInt();
+				int weight = scanner.nextInt();
+				if(j>=vertexsNum||k>=vertexsNum){
+					System.out.println("错误");
+					i = i-1;
+					continue;
+				}else {
+					//使用头插法,使用尾插法无法判断顶点表
+					EdgesNode edgesNode = new EdgesNode();//创建一个节点
+					edgesNode.vertexsNo = k;//指向下一个节点的编号
+					edgesNode.weight = weight;
+					edgesNode.nextNode = graph.vertexs[j].fistNode; //使用头插法，链表的顺序相反，交换地址
+					graph.vertexs[j].fistNode = edgesNode; //与该顶点相连的坐标，节点下移
+				}		
+			}
+			scanner.close();
+		}
+	
+	// 初始化
+	public void init(Graph graph) {
+		graph.vertexs = new Vertexs[Max_Vaue];
+		graph.edgesNum = 0;
+		graph.vertexsNum = 0;
+
+		for (int i = 0; i < Max_Vaue; i++) {
+			Vertexs vertexs = new Vertexs();
+			vertexs.data = null;
+			vertexs.fistNode = null;
+			vertexs.on = 0;
+			graph.vertexs[i] = vertexs;
+		}
+	}
+}
+
+/**
+ *节点
+ * @author user
+ */
+class EdgesNode{
+	int vertexsNo ;//指向节点的编号
+	EdgesNode nextNode;//下一个节点
+	int weight ;   //权值
+}
+
+/**
+ * @author user
+ *顶点
+ */
+class Vertexs{
+	Object data; //顶点信息
+	int on;   //当前顶点编号
+	EdgesNode fistNode; //边表指向第一个节点
+}
+
+/**
+ * 图
+ */
+class Graph{
+	Vertexs[] vertexs;
+	int edgesNum; //边数
+	int vertexsNum; //顶点数
+	int[][] edges;
+}
